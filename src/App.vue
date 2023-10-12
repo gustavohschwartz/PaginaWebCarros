@@ -19,21 +19,24 @@ function adicionar() {
     cor: corCarro.value
   })
 
-  limpar();
+  limpar(); 
 }
 
+//Preenche os campos com os valores do carro da tabela
+function preencherFormulario(carro) {
+  carroParaEdicao.value = carro
+  nomeCarro.value = carro.nome
+  valorCarro.value = carro.valor
+  corCarro.value = carro.cor
+}
+
+//Atualiza os valores na tabela
 function editar(carro, carros) {
-  let idx = -1
+  let i = carros.indexOf(carro);
 
-  carros.filter((c, i) => {
-    if (c.nome == carro.nome) {
-      return idx = i
-    }
-  })
-
-  carros[idx].nome = nomeCarro.value
-  carros[idx].valor = valorCarro.value
-  carros[idx].cor = corCarro.value
+  carros[i].nome = nomeCarro.value
+  carros[i].valor = valorCarro.value
+  carros[i].cor = corCarro.value
 
   limpar();
 }
@@ -45,18 +48,12 @@ function salvar() {
     adicionar()
 }
 
+//Volta os dados ao valor inicial.
 function limpar() {
   carroParaEdicao.value = ''
   nomeCarro.value = ''
   valorCarro.value = ''
   corCarro.value = ''
-}
-
-function preencherFormulario(carro) {
-  carroParaEdicao.value = carro
-  nomeCarro.value = carro.nome
-  valorCarro.value = carro.valor
-  corCarro.value = carro.cor
 }
 
 function excluir(carro, carros) {
